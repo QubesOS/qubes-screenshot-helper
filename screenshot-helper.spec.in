@@ -1,12 +1,11 @@
-%{!?version: %define version %(cat version)}
-
 Name:		qubes-screenshot-helper
-Version:	%{version}
+Version:	@VERSION@
 Release:	1%{?dist}
 Summary:	Save screenshots in a chosen domain instead of Dom0
 
 License:	ISC
 URL:		https://github.com/jpouellet/qubes-screenshot-helper
+Source0:    %{name}-%{version}.tar.gz
 
 Requires:	qubes-core-dom0
 Requires:	qubes-core-dom0-linux
@@ -16,14 +15,16 @@ Requires:	zenity
 Requires(post):	desktop-file-utils
 Requires(postun): desktop-file-utils
 
-%define _builddir %(pwd)
-
 %description
 Save screenshots in a chosen domain instead of Dom0.
 
+%prep
+%setup -q
+
+
 %install
 install -D qvm-move-to-chosen-vm $RPM_BUILD_ROOT/usr/libexec/qubes/qvm-move-to-chosen-vm
-install -D qubes-save-image-in-vm.desktop $RPM_BUILD_ROOT/usr/share/applications/qubes-save-image-in-vm.desktop
+install -m 0644 -D qubes-save-image-in-vm.desktop $RPM_BUILD_ROOT/usr/share/applications/qubes-save-image-in-vm.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -38,3 +39,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun
 /usr/bin/update-desktop-database &> /dev/null || :
+
+%changelog
+@CHANGELOG@
