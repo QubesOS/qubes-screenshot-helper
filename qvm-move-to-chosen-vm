@@ -10,5 +10,5 @@ vm=$(
 
 if [ -n "$vm" ]; then
 	qvm-move-to-vm "$vm" "$@"
-	qvm-run -p "$vm" 'xdg-open /home/user/QubesIncoming/dom0' </dev/null
+	qvm-run -p "$vm" 'xdg-open ~/QubesIncoming/dom0' </dev/null
 fi
