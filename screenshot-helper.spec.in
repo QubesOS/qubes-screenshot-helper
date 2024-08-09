@@ -7,6 +7,7 @@ License:	ISC
 URL:		https://github.com/jpouellet/qubes-screenshot-helper
 Source0:    %{name}-%{version}.tar.gz
 
+BuildArch: noarch
 Requires:	qubes-core-dom0
 Requires:	qubes-core-dom0-linux
 Requires:	coreutils
